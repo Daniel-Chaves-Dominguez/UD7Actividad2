@@ -41,9 +41,9 @@ public class SocioDAO {
     public void borrarSocio(int id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Socio s = em.find(Socio.class, id);
-        if (s != null) {
-            em.remove(s);
+        Socio encontrado = em.find(Socio.class, id);
+        if (encontrado != null) {
+            em.remove(encontrado);
         }
         em.getTransaction().commit();
         em.close();
@@ -52,12 +52,14 @@ public class SocioDAO {
     //ASIGNAR UN SOCIO A UN GIMNASIO:
     public void asignarSocio(int idSocio, int idGimnasio) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
         Socio s = em.find(Socio.class, idSocio);
         Gimnasio g = em.find(Gimnasio.class, idGimnasio);
-        s.getGimnasios().add(g);
-        g.getSocios().add(s);
-        em.getTransaction().commit();
+        if (s != null && g != null) {
+            em.getTransaction().begin();
+            s.getGimnasios().add(g);
+            g.getSocios().add(s);
+            em.getTransaction().commit();
+        }
         em.close();
     }
 

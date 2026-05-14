@@ -62,7 +62,7 @@ public class Main {
         //BORRADOS DE GIMNASIO Y SOCIO:
         System.out.println("\nBORRADO DE UN SOCIO DE UN GIMNASIO:");
         socioDAO.borrarSocioDeGimnasio(11,11);
-        
+
         System.out.println("\nBORRADO DE UN GIMNASIO:");
         gymDAO.borrarGimnasio(11);
 
